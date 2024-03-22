@@ -29,7 +29,7 @@
           *Release Notes:*
           -
           
-          #{params[:footerText]}
+          _#{params[:footerText]}_
           HEREDOC
 
           bodyText = {
