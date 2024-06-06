@@ -2,16 +2,16 @@ lane :test do
       google_chat(
             webhook: '',
             headerTitle: '',
-            headerSubTitle: '',
-            headerImageUrl: '',
-            bodyTitle1: '',
-            bodySubtitle1: '',
-            bodyTitle2: '',
-            bodySubtitle2: '',
-            bodyTitle3: '',
-            bodySubtitle3: '',
-            bodyTitle4: '',
-            bodySubtitle4: '',
-            mentions: ''
+            headerSubtitle: '',
+            item1Title: '',
+            item1Subtitle: '',
+            item2Title: '',
+            item2Subtitle: '',
+            item3Title: '',
+            item3Subtitle: '',
+            item4Title: '',
+            item4Subtitle: '',
+            buttonTitle: '',
+            buttonUrl: ''
       )
 end
