@@ -9,6 +9,67 @@
       class GoogleChatAction < Action
         def self.run(params)
           uri = URI.parse(params[:webhook])
+
+          item1 = {
+            "decoratedText": {
+              "topLabel": "<font color=\"#4caf50\">#{params[:item1Title]}</font>",
+              "text": params[:item1Subtitle]
+            }
+          }
+
+          item2 = {
+            "decoratedText": {
+              "topLabel": "<font color=\"#4caf50\">#{params[:item2Title]}</font>",
+              "text": params[:item2Subtitle]
+            }
+          }
+
+          item3 = {
+            "decoratedText": {
+              "topLabel": "<font color=\"#4caf50\">#{params[:item3Title]}</font>",
+              "text": params[:item3Subtitle]
+            }
+          }
+
+          item4 = {
+            "decoratedText": {
+                "topLabel": "<font color=\"#4caf50\">#{params[:item4Title]}</font>",
+                "text": params[:item4Subtitle]
+              }
+          }
+
+          divider = { "divider": {} }
+
+          widgets = [item1, item2, item3, item4]
+
+          buttonList = {
+            "buttonList": {
+              "buttons": [
+                {
+                  "text": params[:buttonTitle],
+                  "color": {
+                    "red": 0.29,
+                    "green": 0.69,
+                    "blue": 0.31,
+                    "alpha": 1
+                  },
+                  "onClick": {
+                    "openLink": {
+                      "url": params[:buttonUrl]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+
+          buttonTitle = params[:buttonTitle]
+          buttonURL = params[:buttonUrl]
+          if buttonTitle && !buttonTitle.empty? && buttonURL && !buttonURL.empty?
+            widgets << divider
+            widgets << buttonList
+          end
+
           cardsV2 = {
             "cardsV2": [
               {
@@ -19,55 +80,7 @@
                   },
                   "sections": [
                     {
-                      "widgets": [
-                      {
-                        "decoratedText": {
-                          "topLabel": "<font color=\"#4caf50\">#{params[:item1Title]}</font>",
-                          "text": params[:item1Subtitle]
-                        }
-                      },
-                      {
-                        "decoratedText": {
-                          "topLabel": "<font color=\"#4caf50\">#{params[:item2Title]}</font>",
-                          "text": params[:item2Subtitle]
-                        }
-                      },
-                      {
-                        "decoratedText": {
-                          "topLabel": "<font color=\"#4caf50\">#{params[:item3Title]}</font>",
-                          "text": params[:item3Subtitle]
-                        }
-                      },
-                      {
-                        "decoratedText": {
-                          "topLabel": "<font color=\"#4caf50\">#{params[:item4Title]}</font>",
-                          "text": params[:item4Subtitle]
-                        }
-                      },
-                      {
-                        "divider": {}
-                      },
-                      {
-                        "buttonList": {
-                          "buttons": [
-                            {
-                              "text": params[:buttonTitle],
-                              "color": {
-                                "red": 0.29,
-                                "green": 0.69,
-                                "blue": 0.31,
-                                "alpha": 1
-                              },
-                              "onClick": {
-                                "openLink": {
-                                  "url": params[:buttonUrl]
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                      "widgets": widgets
                     }
                   ]
                 }
